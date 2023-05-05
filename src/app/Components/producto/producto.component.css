@@ -1,0 +1,13 @@
+.image{
+    width: 70px;
+    margin: 0 auto;
+}
+.example-card{
+    width: 300px;
+}
+.title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+}

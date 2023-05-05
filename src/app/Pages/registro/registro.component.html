@@ -1,0 +1,51 @@
+<form [formGroup]="myForm" (ngSubmit)="registrarse()">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre" 
+            [ngClass]="{
+                warning:myForm.get('nombre')?.hasError('minlength') && myForm.get('nombre')?.dirty
+            }">
+        </mat-form-field>
+    </div>
+    <div *ngIf="myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty">
+        <p *ngIf="myForm.get('nombre')?.hasError('required')" class="textError">El campo es obligatorio</p>
+        <p *ngIf="myForm.get('nombre')?.hasError('minlength')" class="textError">Debe completar al menos 3 caracteres</p>
+    </div>
+    
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput type="text" formControlName="apellido">
+        </mat-form-field>
+    </div>
+    
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="correo" [ngClass]="{
+                warning: myForm.get('correo')?.hasError('email') && myForm.get('correo')?.dirty || myForm.get('correo')?.hasError('minlength') && myForm.get('correo')?.dirty
+            }">
+        </mat-form-field>
+    </div>
+    <div *ngIf="myForm.get('correo')?.errors && myForm.get('correo')?.dirty">
+        <p *ngIf="myForm.get('correo')?.hasError('required')" class="textError">El campo es obligatorio</p>
+        <p *ngIf="myForm.get('correo')?.hasError('email')" class="textError">Debe contener estructura de correo ejj: alguien@gmail.com</p>
+        <p *ngIf="myForm.get('correo')?.hasError('minlength')" class="textError">Debe contener almenos 6 caracteres</p>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="clave"
+            [ngClass]="{
+                warning:myForm.get('clave')?.hasError('pattern') && myForm.get('clave')?.dirty || myForm.get('clave')?.hasError('minlength') && myForm.get('clave')?.dirty
+            }">
+        </mat-form-field>
+    </div>
+    <div *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+        <p *ngIf="myForm.get('clave')?.hasError('required')" class="textError">El campo es obligatorio</p>
+        <p *ngIf="myForm.get('clave')?.hasError('pattern')" class="textError">El campo tiene que contener porlomenos una letra y un numero </p>
+        <p *ngIf="myForm.get('clave')?.hasError('minlength')" class="textError">Debe contener almenos 6 caracteres </p>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Registrarse</button>
+</form>

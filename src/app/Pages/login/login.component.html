@@ -1,0 +1,26 @@
+<form [formGroup]="myForm" (ngSubmit)="login()">
+    <div>
+        <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+         <input matInput type="email" formControlName="correo"
+         [ngClass]="{
+             warning: myForm.get('correo')?.hasError('email') && myForm.get('correo')?.dirty 
+         }">
+        </mat-form-field>
+     </div>
+     <div *ngIf="myForm.get('correo')?.errors && myForm.get('correo')?.dirty">
+         <p *ngIf="myForm.get('correo')?.hasError('required')" class="textError">El campo es obligatorio</p>
+         <p *ngIf="myForm.get('correo')?.hasError('email')" class="textError">Debe contener estructura de correo ejj: alguien@gmail.com</p>
+     </div>
+     <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+         <input matInput type="password" formControlName="clave">
+        </mat-form-field>
+     </div>
+     <div *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+         <p *ngIf="myForm.get('clave')?.hasError('required')" class="textError">El campo es obligatorio</p>
+     </div>
+     <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Ingresar</button>
+ </form>
+

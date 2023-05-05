@@ -1,0 +1,14 @@
+<mat-card class="example-card">
+    <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title class="title">{{data.title}}</mat-card-title>
+    <mat-card-subtitle>{{data.price | currency:'ARS'}}</mat-card-subtitle>
+    <mat-card-subtitle>Cantidad disponible:{{data.available_quantity}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="image" src="{{data.thumbnail}}">
+    
+    <mat-card-actions>
+    <button mat-raised-button color="primary" routerLink="/producto/{{data.id}}">Detalle del producto</button>
+    <button mat-raised-button color="warn" (click)="eliminar()" *ngIf="isLogin">Eliminar</button>
+    </mat-card-actions>
+</mat-card>
